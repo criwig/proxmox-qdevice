@@ -10,21 +10,21 @@ services:
       - "NEW_ROOT_PASSWORD=CHANGEME"
     volumes:
       - /run/sshd
-      - <MY LOCAL STORAGE>:/etc/corosync
+      - 192.168.178.9:/etc/corosync
     restart: unless-stopped
-    hostname: <MY FQDN>
+    hostname: qdevice.local
     networks: 
       vlan:
-        ipv4_address: <MY IP ADDRESS>
+        ipv4_address: 192.168.178.11
 
 networks:
  vlan:
     driver: macvlan
     driver_opts:
-      parent: <MY ETHERNET DEVICE>
+      parent: 192.168.178.7
     ipam:
        driver: default
        config:
-        - subnet: "<MY SUBNET/MY RANGE"
-          ip_range: "<MY IP ADDRESS (same as above)>/32"
-          gateway: "<MY GATEWAY>"
+        - subnet: "192.168.178.0/24"
+          ip_range: "192.168.178.7/32"
+          gateway: "192.168.178.7"
